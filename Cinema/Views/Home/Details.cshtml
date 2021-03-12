@@ -1,25 +1,54 @@
 ﻿@using Cinema.Models
-@model Film
+@model DetailsViewModel
 @{
     ViewBag.Title = "Details";
 }
 
 <div class="row">
+        <div class="coll-md-12">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Country</th>
+                       
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.FilmCountries)
+                    {
+                        <tr>
+                            <td>
+                                @item.Country.Name
+                            </td>
+                        </tr>
+                        
+
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+<div class="row">
     <div class="coll-md-12">
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>Country</th>
-                    <th>Janr</th>
+                    <th>Janre</th>
+
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>@Model.Country.Name</td>
-                    <td>@Model.Janre.Name</td>
-                </tr>
+                @foreach (var item in Model.FilmJanres)
+                {
+                    <tr>
+                        <td>
+                            @item.Janre.Name
+                        </td>
+                    </tr>
+
+
+                }
             </tbody>
         </table>
     </div>
 </div>
-

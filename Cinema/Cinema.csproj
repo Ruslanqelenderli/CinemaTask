@@ -100,6 +100,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\main.js" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -125,11 +126,26 @@
     <Compile Include="Migrations\202103121005128_Initial.Designer.cs">
       <DependentUpon>202103121005128_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202103121450141_ManyToManyAdded.cs" />
+    <Compile Include="Migrations\202103121450141_ManyToManyAdded.Designer.cs">
+      <DependentUpon>202103121450141_ManyToManyAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103121456130_ManyToManyAdded2.cs" />
+    <Compile Include="Migrations\202103121456130_ManyToManyAdded2.Designer.cs">
+      <DependentUpon>202103121456130_ManyToManyAdded2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103121531565_ManyToManyAdded3.cs" />
+    <Compile Include="Migrations\202103121531565_ManyToManyAdded3.Designer.cs">
+      <DependentUpon>202103121531565_ManyToManyAdded3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Country.cs" />
+    <Compile Include="Models\DetailsViewModel.cs" />
     <Compile Include="Models\Film.cs" />
+    <Compile Include="Models\FilmJanre.cs" />
     <Compile Include="Models\IndexViewModel.cs" />
     <Compile Include="Models\Janre.cs" />
+    <Compile Include="Models\FilmCountry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -166,6 +182,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202103121005128_Initial.resx">
       <DependentUpon>202103121005128_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103121450141_ManyToManyAdded.resx">
+      <DependentUpon>202103121450141_ManyToManyAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103121456130_ManyToManyAdded2.resx">
+      <DependentUpon>202103121456130_ManyToManyAdded2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103121531565_ManyToManyAdded3.resx">
+      <DependentUpon>202103121531565_ManyToManyAdded3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

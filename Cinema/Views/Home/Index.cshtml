@@ -20,25 +20,26 @@
             <input class="form-control" type="text" id="Duration" name="Duration" />
             <label>Link</label>
             <input class="form-control" type="text" id="Link" name="Link" />
-            <label>Country</label>
+            <label style="display:block">Country</label>
 
 
 
 
-            <select class="form-control" id="Country" name="CountryId">
+            <select class="form-control select2" id="Country" name="countryIds" multiple>
                 <option value="0"></option>
-
                 @foreach (var item in Model.Countries)
                 {
                     <option value="@item.Id">@item.Name</option>
                 }
+
+
             </select>
 
 
 
 
-            <label>Janre</label>
-            <select class="form-control" id="Janre" name="JanreId">
+            <label style="display:block">Janre</label>
+            <select class="form-control select2" id="Janre" name="janreIds"multiple>
                 <option value="0"></option>
                 @foreach (var item in Model.Janres)
                 {

@@ -13,6 +13,11 @@ namespace Cinema.Context
         public DbSet<Film> Films { get; set; }
         public DbSet<Country> Countries { get; set; }
         public DbSet<Janre> Janres { get; set; }
+        public DbSet<FilmCountry> FilmCountries { get; set; }
+        public DbSet<FilmJanre> FilmJanres { get; set; }
+
+
+
 
     }
 }

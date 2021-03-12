@@ -17,13 +17,18 @@ namespace Cinema.Controllers
         {
 
             List<Film> films = db.Films.ToList();
+
             List<Country> countries = db.Countries.ToList();
             List<Janre> janres = db.Janres.ToList();
+
+
+
             IndexViewModel indexViewModel = new IndexViewModel()
             {
                 Films = films,
                 Countries = countries,
-                Janres = janres
+                Janres = janres,
+
             };
 
             return View(indexViewModel);
@@ -47,22 +52,48 @@ namespace Cinema.Controllers
 
 
         }
+
+
+
+
+
+
+
+
         [HttpPost]
-        public ActionResult Add(Film film)
+        public ActionResult Add(Film filmModel, int[] countryIds, int[] janreIds)
         {
+            Film film = filmModel;
 
             db.Films.Add(film);
+
+            foreach (int countryId in countryIds)
+            {
+                db.FilmCountries.Add(new FilmCountry(countryId, film.Id));
+            }
+            foreach (int janreId in janreIds)
+            {
+                db.FilmJanres.Add(new FilmJanre(janreId, film.Id));
+            }
+
             db.SaveChanges();
             return RedirectToAction("Index", "Home");
         }
 
+
         public ActionResult Details(int id)
         {
-            var f = db.Films.Where(x => x.Id == id)
-                                            .Include(x => x.Janre)
-                                            .Include(x => x.Country)
-                                            .FirstOrDefault();
-            return View(f);
+
+            List<FilmJanre> filmJanres = db.FilmJanres.Where(fj => fj.FilmId == id).Include(fj => fj.Janre).ToList();
+            List<FilmCountry> filmCountries = db.FilmCountries.Where(fc => fc.FilmId == id).Include(fj => fj.Country).ToList();
+            DetailsViewModel details = new DetailsViewModel()
+            {
+                FilmJanres = filmJanres,
+                FilmCountries = filmCountries
+            };
+
+
+            return View(details);
         }
     }
 }
