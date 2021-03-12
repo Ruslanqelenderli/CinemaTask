@@ -1,0 +1,25 @@
+﻿@using Cinema.Models
+@model Film
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="row">
+    <div class="coll-md-12">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Country</th>
+                    <th>Janr</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Model.Country.Name</td>
+                    <td>@Model.Janre.Name</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

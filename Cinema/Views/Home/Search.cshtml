@@ -1,0 +1,32 @@
+﻿@using Cinema.Models
+@model List<Film>
+@{
+    ViewBag.Title = "Search";
+}
+
+<div class="row">
+    <div class="coll col-md-12">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Publication Date</th>
+                    <th>Duration</th>
+                    <th>Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.PublicationDate</td>
+                        <td>@item.Duration</td>
+                        <td><a href="@item.Link">Youtube</a></td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

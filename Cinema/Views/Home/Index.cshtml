@@ -1,0 +1,107 @@
+﻿@using Cinema.Models
+@model IndexViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+
+
+@using (Html.BeginForm("Add", "Home", FormMethod.Post))
+{
+    <div class="row">
+        <div class=" coll col-md-11">
+            <label>Name</label>
+            <input type="text" class="form-control" id="Name" name="Name" />
+            <label>Publication Date</label>
+            <input class="form-control" type="date" id="PDate" name="PublicationDate" />
+            <label>Duration</label>
+            <input class="form-control" type="text" id="Duration" name="Duration" />
+            <label>Link</label>
+            <input class="form-control" type="text" id="Link" name="Link" />
+            <label>Country</label>
+
+
+
+
+            <select class="form-control" id="Country" name="CountryId">
+                <option value="0"></option>
+
+                @foreach (var item in Model.Countries)
+                {
+                    <option value="@item.Id">@item.Name</option>
+                }
+            </select>
+
+
+
+
+            <label>Janre</label>
+            <select class="form-control" id="Janre" name="JanreId">
+                <option value="0"></option>
+                @foreach (var item in Model.Janres)
+                {
+                    <option value="@item.Id">@item.Name</option>
+                }
+            </select>
+            <input class="form-control" type="submit" value="Add" />
+
+
+        </div>
+    </div>
+
+
+
+}
+<div class="row">
+    <div class="coll col-md-12">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Publication Date</th>
+                    <th>Duration</th>
+                    <th>Link</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model.Films)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.PublicationDate</td>
+                        <td>@item.Duration</td>
+                        <td><a href="@item.Link" target="_blank">Youtube</a></td>
+                        <td><a href="@Url.Action("Details","Home",new { id=item.Id})">Details</a></td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+        @using (Html.BeginForm("Search", "Home", FormMethod.Get))
+        {
+            <p>
+                <label>From Date</label>
+                <input type="date" id="start" name="FromDate">
+                <label>To Date</label>
+                <input type="date" id="start1" name="ToDate" />
+                <input type="submit" value="Search" />
+
+
+
+            </p>
+        }
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
