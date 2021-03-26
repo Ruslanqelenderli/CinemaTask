@@ -1,0 +1,55 @@
+﻿@using Cinema.Models
+@model UpdateViewModel
+
+
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+@using (Html.BeginForm("Update", "Home", FormMethod.Post, new { id = Model.Films.Id }))
+{
+
+    <div class=" coll col-md-5">
+        <label>Name</label>
+        <input type="text" class="form-control" value="@Model.Films.Name" id="Name" name="Name" />
+        <label>Publication Date</label>
+        <input class="form-control" type="date" value="@Model.Films.PublicationDate.ToString("yyyy-MM-dd")" id="PDate" name="PublicationDate" />
+        <label>Duration</label>
+        <input class="form-control" type="text" id="Duration" name="Duration" value="@Model.Films.Duration" />
+        <label>Link</label>
+        <input class="form-control" type="text" id="Link" name="Link" value="@Model.Films.Link" />
+        <label style="display:block">Country</label>
+
+
+
+
+        <select class="form-control select2" id="Country" name="countryIds" multiple>
+            <option value="0"></option>
+            @foreach (var item in Model.Countries)
+            {
+                <option @(Model.Films.FilmCountries.Where(x => x.CountryId == item.Id).Count() > 0 ? "selected" : "") value="@item.Id">@item.Name</option>
+            }
+        </select>
+
+
+
+
+        <label style="display:block">Janre</label>
+        <select class="form-control select2" id="Janre" name="janreIds" multiple>
+            <option value="0"></option>
+            @foreach (var item in Model.Janres)
+            {
+                <option @(Model.Films.FilmJanres.Where(x => x.JanreId == item.Id).Count() > 0 ? "selected" : "") value="@item.Id">@item.Name</option>
+            }
+
+        </select>
+        <hr />
+        <input class="form-control" type="submit" value="Update" />
+
+
+    </div>
+
+
+    <script src="~/Content/vendorR/main.js"></script>
+
+
+
+}

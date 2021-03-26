@@ -1,0 +1,16 @@
+﻿@using Cinema.Models
+@model Hall
+@{
+    
+}
+
+<div class="row">
+    <div class="coll col-md-7">
+        @using (Html.BeginForm("HallUpdate", "Home", FormMethod.Post))
+        {
+            <label>Hall Name</label>
+            <input type="text" value="@Model.Name" class="form-control" name="Name" />
+            <input type="submit" value="Update" class="form-control" />
+        }
+    </div>
+</div>

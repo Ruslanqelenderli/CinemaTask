@@ -1,0 +1,43 @@
+﻿@using Cinema.Models
+@model List<Hall>
+@{
+    ViewBag.Title = "AddHall";
+
+}
+
+<div class="row row-space">
+    <div class="coll col-md-5">
+        @using (Html.BeginForm("AddHall", "Home", FormMethod.Post))
+        {
+            <label>Hall Name</label>
+            <input type="text" name="Name" class="form-control" />
+            <hr />
+            <input type="submit" class="form-control" value="Add"/>
+        }
+    </div>
+    <div class="coll col-md-7">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Hall Name</th>
+                    <th>Delete</th>
+                    <th>Update</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td><a href="@Url.Action("HallDelete","Home",new { id=item.Id})">Delete</a></td>
+                        <td><a href="@Url.Action("HallUpdate","Home",new { id=item.Id})">Update</a></td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

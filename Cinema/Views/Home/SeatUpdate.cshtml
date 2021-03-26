@@ -1,0 +1,30 @@
+﻿@using Cinema.Models
+@model SeatUpdateViewModel
+
+
+<div class="row row-space">
+    <div class=" col-md-5">
+        @using (Html.BeginForm("SeatUpdate", "Home", FormMethod.Post))
+        {
+            <label style="display:block">Hall</label>
+            <select class="form-control select2" id="HallId" name="HallId" value="@Model.Seat.HallId">
+                <option value="0"></option>
+
+                @foreach (var item in Model.Halls)
+                {
+                    <option @(Model.Seat.HallId == item.Id ? "selected" : "") value="@item.Id">@item.Name</option>
+                }
+
+
+            </select>
+            <label style="display:block">Row</label>
+            <input type="text" name="Row" class="form-control" value="@Model.Seat.Row" />
+            <label>Column</label>
+            <input type="number" name="Column" class="form-control" value="@Model.Seat.Column" />
+            <hr />
+
+            <input type="submit" value="Update" class="form-control" />
+
+        }
+    </div>
+</div>

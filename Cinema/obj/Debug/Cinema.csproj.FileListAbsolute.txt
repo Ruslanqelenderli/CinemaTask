@@ -79,3 +79,17 @@ C:\Users\User\source\repos\Cinema\Cinema\obj\Debug\Cinema.csproj.GenerateResourc
 C:\Users\User\source\repos\Cinema\Cinema\obj\Debug\Cinema.Migrations.ManyToManyAdded.resources
 C:\Users\User\source\repos\Cinema\Cinema\obj\Debug\Cinema.Migrations.ManyToManyAdded2.resources
 C:\Users\User\source\repos\Cinema\Cinema\obj\Debug\Cinema.Migrations.ManyToManyAdded3.resources
+C:\Users\User\source\repos\Cinema\Cinema\obj\Debug\Cinema.Migrations.UserModel.resources
+C:\Users\User\source\repos\Cinema\Cinema\obj\Debug\Cinema.Migrations.HallAndSeat.resources
+C:\Users\User\source\repos\Cinema\Cinema\obj\Debug\Cinema.Migrations.HallAndSeat1.resources
+C:\Users\User\source\repos\Cinema\Cinema\obj\Debug\Cinema.Migrations.Count.resources
+C:\Users\User\source\repos\Cinema\Cinema\obj\Debug\Cinema.Migrations.DeleteCount.resources
+C:\Users\User\source\repos\Cinema\Cinema\bin\Antlr3.Runtime.dll
+C:\Users\User\source\repos\Cinema\Cinema\bin\Newtonsoft.Json.dll
+C:\Users\User\source\repos\Cinema\Cinema\bin\System.Web.Optimization.dll
+C:\Users\User\source\repos\Cinema\Cinema\bin\WebGrease.dll
+C:\Users\User\source\repos\Cinema\Cinema\bin\Antlr3.Runtime.pdb
+C:\Users\User\source\repos\Cinema\Cinema\bin\Newtonsoft.Json.xml
+C:\Users\User\source\repos\Cinema\Cinema\bin\System.Web.Optimization.xml
+C:\Users\User\source\repos\Cinema\Cinema\obj\Debug\Cinema.Migrations.Error.resources
+C:\Users\User\source\repos\Cinema\Cinema\obj\Debug\Cinema.Migrations.UserSession.resources

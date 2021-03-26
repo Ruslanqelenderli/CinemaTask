@@ -2,16 +2,17 @@
 @model IndexViewModel
 @{
     ViewBag.Title = "Index";
+
 }
 
+<hr />
 
+<div class="row row-space">
 
+    @using (Html.BeginForm("Add", "Home", FormMethod.Post))
+    {
 
-
-@using (Html.BeginForm("Add", "Home", FormMethod.Post))
-{
-    <div class="row">
-        <div class=" coll col-md-11">
+        <div class=" coll col-md-5">
             <label>Name</label>
             <input type="text" class="form-control" id="Name" name="Name" />
             <label>Publication Date</label>
@@ -21,8 +22,7 @@
             <label>Link</label>
             <input class="form-control" type="text" id="Link" name="Link" />
             <label style="display:block">Country</label>
-
-
+ 
 
 
             <select class="form-control select2" id="Country" name="countryIds" multiple>
@@ -39,34 +39,45 @@
 
 
             <label style="display:block">Janre</label>
-            <select class="form-control select2" id="Janre" name="janreIds"multiple>
+            <select class="form-control select2" id="Janre" name="janreIds" multiple>
                 <option value="0"></option>
                 @foreach (var item in Model.Janres)
                 {
                     <option value="@item.Id">@item.Name</option>
                 }
+
             </select>
+            <hr />
             <input class="form-control" type="submit" value="Add" />
 
 
         </div>
-    </div>
 
 
 
-}
-<div class="row">
-    <div class="coll col-md-12">
+
+
+    }
+
+    <div class="coll col-md-7">
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>Name</th>
+                    <th>
+                        <a href="@Url.Action("Index","Home",new { orderBy = "Name"})">Name</a>
+                    </th>
                     <th>Publication Date</th>
                     <th>Duration</th>
                     <th>Link</th>
+                    <th>Details</th>
+                    <th>Delete</th>
+                    <th>Update</th>
+                    <th>User Name</th>
                 </tr>
             </thead>
             <tbody>
+
+
 
                 @foreach (var item in Model.Films)
                 {
@@ -75,12 +86,21 @@
                         <td>@item.PublicationDate</td>
                         <td>@item.Duration</td>
                         <td><a href="@item.Link" target="_blank">Youtube</a></td>
-                        <td><a href="@Url.Action("Details","Home",new { id=item.Id})">Details</a></td>
+                        <td><a href="@Url.Action("Details", "Home", new { id = item.Id })">Details</a></td>
+                        <td><a href="@Url.Action("Delete", "Home", new { id = item.Id })">Delete</a></td>
+                        <td><a href="@Url.Action("Update", "Home", new { id = item.Id })">Update</a></td>
+                        <td>@item.User.Name</td>
+
                     </tr>
+                    
 
                 }
+
             </tbody>
         </table>
+    </div>
+    <hr />
+    <div class="row">
         @using (Html.BeginForm("Search", "Home", FormMethod.Get))
         {
             <p>
@@ -94,15 +114,20 @@
 
             </p>
         }
-
-
-
-
-
-
-
-
-
     </div>
+
+
+
+
+
+
+
+
+
 </div>
+</div>
+
+
+
+
 
