@@ -31,7 +31,7 @@
                 {
                     <tr>
                         <td>@item.Name</td>
-                        <td><a href="@Url.Action("HallDelete","Home",new { id=item.Id})">Delete</a></td>
+                        <td><a onclick="return confirm('Are you sure?')"  href="@Url.Action("HallDelete","Home",new { id=item.Id})">Delete</a></td>
                         <td><a href="@Url.Action("HallUpdate","Home",new { id=item.Id})">Update</a></td>
                     </tr>
 

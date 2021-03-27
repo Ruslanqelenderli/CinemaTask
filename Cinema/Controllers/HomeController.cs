@@ -50,7 +50,7 @@ namespace Cinema.Controllers
             {
                 foreach (var item in film)
                 {
-                    if (item.PublicationDate > FromDate && item.PublicationDate < ToDate)
+                    if (item.PublicationDate > FromDate && item.PublicationDate <= ToDate)
                     {
                         list.Add(item);
                     };
@@ -79,7 +79,7 @@ namespace Cinema.Controllers
                filmModel.Link != null &&
                janreIds != null &&
                countryIds != null &&
-               filmModel.Duration != null)
+               filmModel.Duration != 0)
             {
 
 
@@ -263,34 +263,51 @@ namespace Cinema.Controllers
         [HttpPost]
         public ActionResult AddSeat(Seat seat)
         {
-            if (seat.HallId != null &&
+            if (seat.HallId != 0 &&
                seat.Row != null &&
-               seat.Column != null)
+               seat.Column != 0)
             {
+                
                 List<Seat> seat1 = db.Seats.ToList();
-                foreach (Seat item in seat1)
+                if (seat1.Count!=0)
                 {
-                    if (seat.Column == item.Column && seat.Row == item.Row)
+                    foreach (Seat item in seat1)
                     {
-                        Content("Bu yer doludur");
-                    }
-                    else
-                    {
-                        db.Seats.Add(seat);
-                        db.SaveChanges();
-                        List<Seat> seats = db.Seats.ToList();
-                        List<Hall> hall = db.Halls.ToList();
-                        AddSeatViewModel addSeatViewModel = new AddSeatViewModel()
+                        if (seat.Column == item.Column && seat.Row == item.Row)
                         {
-                            Halls = hall,
-                            Seats = seats
-                        };
-                        return View(addSeatViewModel);
+                            return Content("Bu yer doludur");
+                        }
+                        else
+                        {
+                            db.Seats.Add(seat);
+                            db.SaveChanges();
+                            List<Seat> seats = db.Seats.ToList();
+                            List<Hall> hall = db.Halls.ToList();
+                            AddSeatViewModel addSeatViewModel = new AddSeatViewModel()
+                            {
+                                Halls = hall,
+                                Seats = seats
+                            };
+                            return View(addSeatViewModel);
+                        }
                     }
+                }
+                else
+                {
+                    db.Seats.Add(seat);
+                    db.SaveChanges();
+                    List<Seat> seats = db.Seats.ToList();
+                    List<Hall> hall = db.Halls.ToList();
+                    AddSeatViewModel addSeatViewModel = new AddSeatViewModel()
+                    {
+                        Halls = hall,
+                        Seats = seats
+                    };
+                    return View(addSeatViewModel);
                 }
 
 
-
+                
             };
             return Content("Xanalari doldurun");
         }
@@ -315,29 +332,15 @@ namespace Cinema.Controllers
         {
             if (hall.Name != null)
             {
-                bool r = false;
-                List<Hall> hall2 = db.Halls.ToList();
-                foreach (var item in hall2)
-                {
-                    if (item.Name == hall.Name)
-                    {
-                        r = true;
-                        break;
-                    }
-                }
-                if (r)
-                {
-                    return Content("Bu ad islenilib");
-                }
-                else
-                {
+              
+                
                     Hall halls = db.Halls.Where(x => x.Id == id).FirstOrDefault();
-                    halls.Id = hall.Id;
+                    
                     halls.Name = hall.Name;
                     db.SaveChanges();
                     
                     return RedirectToAction("AddHall","Home");
-                }
+                
 
             }
             return Content("Xanalari doldurun");

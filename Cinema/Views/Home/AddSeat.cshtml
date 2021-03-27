@@ -46,7 +46,7 @@
                         <td>@item.Hall.Name</td>
                         <td>@item.Row</td>
                         <td>@item.Column</td>
-                        <td><a href="@Url.Action("SeatDelete","Home",new { id=item.Id})">Delete</a></td>
+                        <td><a onclick="return confirm('Are you sure?')"  href="@Url.Action("SeatDelete","Home",new { id=item.Id})">Delete</a></td>
                         <td><a href="@Url.Action("SeatUpdate","Home",new { id=item.Id})">Update</a></td>
                     </tr>
                 }
