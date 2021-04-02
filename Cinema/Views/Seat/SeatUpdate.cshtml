@@ -4,7 +4,7 @@
 
 <div class="row row-space">
     <div class=" col-md-5">
-        @using (Html.BeginForm("SeatUpdate", "Home", FormMethod.Post))
+        @using (Html.BeginForm("SeatUpdate", "Seat", FormMethod.Post))
         {
             <label style="display:block">Hall</label>
             <select class="form-control select2" id="HallId" name="HallId" value="@Model.Seat.HallId">

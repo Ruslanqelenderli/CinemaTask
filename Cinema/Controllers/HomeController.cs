@@ -107,13 +107,14 @@ namespace Cinema.Controllers
 
         public ActionResult Details(int id)
         {
-
+            Film film = db.Films.FirstOrDefault(x => x.Id == id);
             List<FilmJanre> filmJanres = db.FilmJanres.Where(fj => fj.FilmId == id).Include(fj => fj.Janre).ToList();
             List<FilmCountry> filmCountries = db.FilmCountries.Where(fc => fc.FilmId == id).Include(fj => fj.Country).ToList();
             DetailsViewModel details = new DetailsViewModel()
             {
                 FilmJanres = filmJanres,
-                FilmCountries = filmCountries
+                FilmCountries = filmCountries,
+                Film=film
             };
 
 
@@ -209,206 +210,10 @@ namespace Cinema.Controllers
 
 
 
-        [HttpPost]
-        public ActionResult AddHall(Hall hall)
-        {
-            if (hall.Name != null)
-            {
-                bool r = false;
-                List<Hall> halls = db.Halls.ToList();
-                foreach (var item in halls)
-                {
-                    if (item.Name == hall.Name)
-                    {
-                        r = true;
-                    }
-                }
-                if (r)
-                {
-                    return Content("Bu ad islenilib");
-                }
-                else
-                {
-
-                    db.Halls.Add(hall);
-                    db.SaveChanges();
-                    List<Hall> hal = db.Halls.ToList();
-                    return View(hal);
-                }
-            }
-            return Content("Ad daxil et");
-
-        }
-        public ActionResult AddHall()
-        {
-            List<Hall> halls = db.Halls.ToList();
-            return View(halls);
-        }
+        
 
 
-        [HttpGet]
-        public ActionResult AddSeat()
-        {
-            List<Hall> hall = db.Halls.ToList();
-            List<Seat> seats = db.Seats.ToList();
-
-            AddSeatViewModel addSeatViewModel = new AddSeatViewModel()
-            {
-                Halls = hall,
-                Seats = seats
-
-            };
-            return View(addSeatViewModel);
-        }
-        [HttpPost]
-        public ActionResult AddSeat(Seat seat)
-        {
-            if (seat.HallId != 0 &&
-               seat.Row != null &&
-               seat.Column != 0)
-            {
-                
-                List<Seat> seat1 = db.Seats.ToList();
-                if (seat1.Count!=0)
-                {
-                    foreach (Seat item in seat1)
-                    {
-                        if (seat.Column == item.Column && seat.Row == item.Row)
-                        {
-                            return Content("Bu yer doludur");
-                        }
-                        else
-                        {
-                            db.Seats.Add(seat);
-                            db.SaveChanges();
-                            List<Seat> seats = db.Seats.ToList();
-                            List<Hall> hall = db.Halls.ToList();
-                            AddSeatViewModel addSeatViewModel = new AddSeatViewModel()
-                            {
-                                Halls = hall,
-                                Seats = seats
-                            };
-                            return View(addSeatViewModel);
-                        }
-                    }
-                }
-                else
-                {
-                    db.Seats.Add(seat);
-                    db.SaveChanges();
-                    List<Seat> seats = db.Seats.ToList();
-                    List<Hall> hall = db.Halls.ToList();
-                    AddSeatViewModel addSeatViewModel = new AddSeatViewModel()
-                    {
-                        Halls = hall,
-                        Seats = seats
-                    };
-                    return View(addSeatViewModel);
-                }
-
-
-                
-            };
-            return Content("Xanalari doldurun");
-        }
-        public ActionResult HallDelete(int id)
-        {
-            Hall hall = db.Halls.Where(x => x.Id == id).FirstOrDefault();
-            db.Halls.Remove(hall);
-            db.SaveChanges();
-
-            return RedirectToAction("AddHall", "Home");
-        }
-        public ActionResult HallUpdate(int id)
-        {
-            Hall hall = db.Halls.Where(x => x.Id == id).FirstOrDefault();
-
-
-
-            return View(hall);
-        }
-        [HttpPost]
-        public ActionResult HallUpdate(int id, Hall hall)
-        {
-            if (hall.Name != null)
-            {
-              
-                
-                    Hall halls = db.Halls.Where(x => x.Id == id).FirstOrDefault();
-                    
-                    halls.Name = hall.Name;
-                    db.SaveChanges();
-                    
-                    return RedirectToAction("AddHall","Home");
-                
-
-            }
-            return Content("Xanalari doldurun");
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        public ActionResult SeatDelete(int id)
-        {
-            Seat seat = db.Seats.Where(x => x.Id == id).FirstOrDefault();
-            db.Seats.Remove(seat);
-            db.SaveChanges();
-            return RedirectToAction("AddSeat", "Home");
-        }
-
-        public ActionResult SeatUpdate(int id)
-        {
-            List<Hall> halls = db.Halls.ToList();
-            Seat seat = db.Seats.Where(x => x.Id == id).FirstOrDefault();
-
-            SeatUpdateViewModel Update = new SeatUpdateViewModel()
-            {
-                Halls = halls,
-                Seat = seat
-            };
-
-            return View(Update);
-        }
-
-        [HttpPost]
-        public ActionResult SeatUpdate(Seat seat, int id)
-        {
-            if (seat.Row != null &&
-               seat.Column != null &&
-               seat.HallId != null)
-            {
-                Seat seat1 = db.Seats.Where(x => x.Id == id).FirstOrDefault();
-                seat1.HallId = seat.HallId;
-                seat1.Row = seat.Row;
-                seat1.Column = seat.Column;
-                db.SaveChanges();
-                List<Hall> halls = db.Halls.ToList();
-                Seat seats = db.Seats.Where(x => x.Id == id).FirstOrDefault();
-                SeatUpdateViewModel Update = new SeatUpdateViewModel()
-                {
-                    Halls = halls,
-                    Seat = seats
-                };
-                return RedirectToAction("AddSeat","Home");
-            }
-            return Content("Xanalari doldurun");
-        }
+        
 
         protected override void Dispose(bool disposing)
         {

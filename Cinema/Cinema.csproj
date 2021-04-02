@@ -184,8 +184,10 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HallController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SeatController.cs" />
     <Compile Include="Filter\Auth.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -271,10 +273,10 @@
     <Content Include="Views\Manage\Register.cshtml" />
     <Content Include="Views\Home\Update.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\AddHall.cshtml" />
-    <Content Include="Views\Home\AddSeat.cshtml" />
-    <Content Include="Views\Home\SeatUpdate.cshtml" />
-    <Content Include="Views\Home\HallUpdate.cshtml" />
+    <Content Include="Views\Hall\AddHall.cshtml" />
+    <Content Include="Views\Seat\AddSeat.cshtml" />
+    <Content Include="Views\Seat\SeatUpdate.cshtml" />
+    <Content Include="Views\Hall\HallUpdate.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

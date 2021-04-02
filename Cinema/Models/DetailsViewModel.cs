@@ -9,5 +9,6 @@ namespace Cinema.Models
     {
         public List<FilmJanre> FilmJanres { get; set; }
         public List<FilmCountry> FilmCountries { get; set; }
+        public Film Film { get; set; }
     }
 }

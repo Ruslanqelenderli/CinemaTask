@@ -55,7 +55,7 @@ namespace Cinema.Controllers
         {
             if (user.Name != null &&
                 user.Surname != null &&
-                user.PhoneNumber != null &&
+                user.PhoneNumber != 0 &&
                 user.Birthday != null &&
                 user.Email != null &&
                 user.Password !=null
